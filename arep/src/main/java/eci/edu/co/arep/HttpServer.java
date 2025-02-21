@@ -16,13 +16,13 @@ public class HttpServer {
 
         Socket clientSocket = null;
         while(true){
-        try {
-            System.out.println("Listo para recibir ...");
-            clientSocket = serverSocket.accept();
-            handreRequest(clientSocket);
-        } catch (IOException e) {
-            System.err.println("Accept failed.");
-        }
+            try {
+                System.out.println("Listo para recibir ...");
+                clientSocket = serverSocket.accept();
+                handreRequest(clientSocket);
+            } catch (IOException e) {
+                System.err.println("Accept failed.");
+            }
         }
         clientSocket.close(); 
         serverSocket.close(); 
