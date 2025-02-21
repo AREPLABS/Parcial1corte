@@ -15,7 +15,7 @@ public class HttpServer {
         }
 
         Socket clientSocket = null;
-        while(true){
+        while(true) {
             try {
                 System.out.println("Listo para recibir ...");
                 clientSocket = serverSocket.accept();
@@ -24,8 +24,6 @@ public class HttpServer {
                 System.err.println("Accept failed.");
             }
         }
-        clientSocket.close(); 
-        serverSocket.close(); 
   }
 
   public static void handreRequest(Socket clientSocket) throws IOException{
@@ -39,20 +37,23 @@ public class HttpServer {
        System.out.println("Recibí: " + inputLine);
        if (!in.ready()) {break; }
     }
-    outputLine = 
-           "<!DOCTYPE html>" + 
-           "<html>" + 
-           "<head>" + 
-           "<meta charset=\"UTF-8\">" + 
-           "<title>Title of the document</title>\n" + 
-           "</head>" + 
-           "<body>" + 
-           "<h1>Mi propio mensaje</h1>" + 
-           "</body>" + 
-           "</html>"; 
-     out.println(outputLine);
+      outputLine = "HTTP/1.1 200 OK\r\n"
+              + "Content-Type: text/html\r\n"
+              + "\r\n"
+              + "<!DOCTYPE html>\n"
+              + "<html>\n"
+              + "<head>\n"
+              + "<meta charset=\"UTF-8\">\n"
+              + "<title>Title of the document</title>\n"
+              + "</head>\n"
+              + "<body>\n"
+              + "<h1>Mi propio mensaje</h1>\n"
+              + "</body>\n"
+              + "</html>\n";
+      out.println(outputLine);
      out.close(); 
      in.close(); 
 
   }
+
 }
